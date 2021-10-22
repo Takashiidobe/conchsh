@@ -1,0 +1,26 @@
+[package]
+name = "conchsh"
+version = "0.1.0"
+edition = "2018"
+default-run = "conchsh"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/takashiidobe/conchsh"
+documentation = "https://docs.rs/concsh"
+description = "A shell in rust"
+
+[dependencies]
+man = { version = "0.3.0", optional = true }
+
+[[bin]]
+name = "man"
+path = "src/build.rs"
+required-features = ["build_deps"]
+
+[features]
+build_deps = ["man"]
+
+[profile.release]
+opt-level = "z"
+codegen-units = 1
+panic = "abort"
